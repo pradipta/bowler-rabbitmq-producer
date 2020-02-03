@@ -15,6 +15,7 @@ Problem: Suppose you have two micro services.
 Use Cases 1: 
 Service 1: 
 1. Create an api accepting the below JSON as an Object.
+```json
 {
   "orderId" : "adfafdafafdasfas",
   "products" : [{
@@ -48,6 +49,7 @@ Service 1:
     }]
   }
 }
+```
 2. Send the above message to a topic exchange. You can name is whatever you want. 
 Service 2:
 1. Create a listener in service 2. This listener should be able to receive message from the above topic exchange. 
@@ -56,6 +58,7 @@ Service 2:
 Use Cases 2: 
 Service 1: 
 1. Create another api accepting the same JSON as an Object.
+```json
 {
   "orderId" : "adfafdafafdasfas",
   "products" : [{
@@ -89,6 +92,7 @@ Service 1:
     }]
   }
 }
+```
 2. Send the above message to a direct exchange. You can name is whatever you want. 
 Service 2:
 1. Create a new listener in service 2. This listener should be able to receive message from the above direct exchange. 
@@ -97,6 +101,7 @@ Service 2:
 Use Cases 3: 
 Service 1: 
 1. Create another api accepting the same JSON as an Object.
+```json
 {
   "orderId" : "adfafdafafdasfas",
   "products" : [{
@@ -130,6 +135,7 @@ Service 1:
     }]
   }
 }
+```
 2. Send the above message to a Fanout exchange. You can name is whatever you want. 
 Service 2:
 1. Create 3 new listener in service 2. All should be able to receive message from the above Fanout Exchange. 
