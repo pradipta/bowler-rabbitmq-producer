@@ -15,4 +15,9 @@ public class OrderRequest {
     private String orderId;
     private List<Product> products;
     private Receipient receipient;
+
+//    @Override
+//    public String toString() {
+//        return "Orderid: "+this.orderId+"\n\"products\":"+products+"\n"+receipient;
+//    }
 }
