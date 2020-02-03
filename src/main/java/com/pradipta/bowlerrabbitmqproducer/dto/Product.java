@@ -12,4 +12,9 @@ import lombok.Setter;
 public class Product {
     private String name;
     private Long price;
+
+//    @Override
+//    public String toString() {
+//        return "{\n\tname = "+name+",\n\tprice= "+price+"\n}\n";
+//    }
 }

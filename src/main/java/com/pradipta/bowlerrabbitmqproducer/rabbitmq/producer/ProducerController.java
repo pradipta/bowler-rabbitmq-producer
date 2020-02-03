@@ -1,7 +1,11 @@
 package com.pradipta.bowlerrabbitmqproducer.rabbitmq.producer;
 
+import com.google.gson.Gson;
+import com.pradipta.bowlerrabbitmqproducer.dto.OrderRequest;
+import com.pradipta.bowlerrabbitmqproducer.rabbitmq.ConfigureRabbitMQ;
 import lombok.AllArgsConstructor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,7 +16,10 @@ public class ProducerController {
     private final RabbitTemplate rabbitTemplate;
 
     @RequestMapping(method = RequestMethod.POST, value = "/sendmessage/topic")
-    public String sendTopicMessage(){
-        return "ABCD";
+    public String sendTopicMessage(@RequestBody OrderRequest orderRequest){
+        Gson gson = new Gson();
+        String jsonMessage = gson.toJson(orderRequest);
+        rabbitTemplate.convertAndSend(ConfigureRabbitMQ.TOPIC_EXCHANGE,ConfigureRabbitMQ.TOPIC_ROUTING_KEY, jsonMessage);
+        return "Message: \""+jsonMessage+"\"\n has been sent.";
     }
 }
