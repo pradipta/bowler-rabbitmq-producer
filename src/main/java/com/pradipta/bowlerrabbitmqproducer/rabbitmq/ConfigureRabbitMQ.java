@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class ConfigureRabbitMQ {
 
     private final String TOPIC_QUEUE = "pradipta.topicqueue";
-    private final String TOPIC_EXCHANGE = "pradipta.topicexchange"
+    private final String TOPIC_EXCHANGE = "pradipta.topicexchange";
 
     @Bean
     Queue createTopicQueue(){
