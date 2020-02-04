@@ -3,6 +3,7 @@ package com.pradipta.bowlerrabbitmqproducer.rabbitmq.producer;
 import com.google.gson.Gson;
 import com.pradipta.bowlerrabbitmqproducer.dto.OrderRequest;
 import com.pradipta.bowlerrabbitmqproducer.rabbitmq.producer.directQueueProducer.ConfigureDirectRabbitMQ;
+import com.pradipta.bowlerrabbitmqproducer.rabbitmq.producer.fanoutQueueProducer.ConfigureFanoutProducer;
 import com.pradipta.bowlerrabbitmqproducer.rabbitmq.producer.topicQueueProducer.ConfigureTopicRabbitMQ;
 import lombok.AllArgsConstructor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -30,5 +31,13 @@ public class ProducerController {
         String jsonMessage = gson.toJson(orderRequest);
         rabbitTemplate.convertAndSend(ConfigureDirectRabbitMQ.DIRECT_EXCHANGE, ConfigureDirectRabbitMQ.DIRECT_ROUTING_KEY, jsonMessage);
         return "Message: \""+jsonMessage+"\"\n has been sent via direct exchange";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/sendmessage/fanout")
+    public String sendFanoutMessage(@RequestBody OrderRequest orderRequest){
+        Gson gson = new Gson();
+        String jsonMessage = gson.toJson(orderRequest);
+        rabbitTemplate.convertAndSend(ConfigureFanoutProducer.FANOUT_EXCHANGE, ConfigureFanoutProducer.FANOUT_ROUTING_KEY, jsonMessage);
+        return "Message: \""+jsonMessage+"\"\n has been sent via fanout exchange";
     }
 }
