@@ -30,7 +30,7 @@ Service 1:
     "basicProfile" : {
         "name" : "",
         "phoneNumber" : "",
-        "email" : "",
+        "email" : ""
     },
     "addresses" : [{
         "addressType" : "billing",
