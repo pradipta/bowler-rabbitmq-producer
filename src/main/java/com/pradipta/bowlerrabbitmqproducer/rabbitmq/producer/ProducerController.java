@@ -7,15 +7,17 @@ import com.pradipta.bowlerrabbitmqproducer.rabbitmq.producer.fanoutQueueProducer
 import com.pradipta.bowlerrabbitmqproducer.rabbitmq.producer.topicQueueProducer.ConfigureTopicRabbitMQ;
 import lombok.AllArgsConstructor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
 public class ProducerController {
     private final RabbitTemplate rabbitTemplate;
+
+    @GetMapping("/hello")
+    public String getHello(){
+        return "Hello";
+    }
 
     @RequestMapping(method = RequestMethod.POST, value = "/sendmessage/topic")
     public String sendTopicMessage(@RequestBody OrderRequest orderRequest){
