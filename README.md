@@ -141,3 +141,18 @@ Service 2:
 1. Create 3 new listener in service 2. All should be able to receive message from the above Fanout Exchange. 
 2. I am assuming you will figure out how to add queue to a listener using GOOGLE SEARCH.
 3. Just print the message to the log. Together with the current queue name
+
+
+`docker build -f Dockerfile -t bowlerindocker .`
+
+`docker pull rabbitmq`
+
+```docker run -d \
+   --name="rabbitmq" \
+   -p "4369:4369" \
+   -p "5671:5671" \
+   -p "5672:5672" \
+   -p "15671:15671" \
+   -p "15672:15672" \
+   rabbitmq:3-management
+```
