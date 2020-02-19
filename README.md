@@ -156,3 +156,5 @@ Service 2:
    -p "15672:15672" \
    rabbitmq:3-management
 ```
+
+`docker run -p 8080:8080 bowler`
