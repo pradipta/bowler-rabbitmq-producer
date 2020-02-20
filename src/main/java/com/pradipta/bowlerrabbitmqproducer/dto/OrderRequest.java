@@ -1,23 +1,16 @@
 package com.pradipta.bowlerrabbitmqproducer.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+import java.io.Serializable;
 import java.util.List;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class OrderRequest {
+@Data
+@ToString
+public class OrderRequest implements Serializable {
+    private static final long serialVersionUID = 123123123123L;
+
     private String orderId;
     private List<Product> products;
     private Receipient receipient;
-
-//    @Override
-//    public String toString() {
-//        return "Orderid: "+this.orderId+"\n\"products\":"+products+"\n"+receipient;
-//    }
 }

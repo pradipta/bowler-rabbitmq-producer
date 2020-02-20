@@ -1,20 +1,12 @@
 package com.pradipta.bowlerrabbitmqproducer.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class Product {
+import java.io.Serializable;
+
+@Data
+@ToString
+public class Product implements Serializable {
     private String name;
     private Long price;
-
-//    @Override
-//    public String toString() {
-//        return "{\n\tname = "+name+",\n\tprice= "+price+"\n}\n";
-//    }
 }

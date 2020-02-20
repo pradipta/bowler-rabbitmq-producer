@@ -1,15 +1,12 @@
 package com.pradipta.bowlerrabbitmqproducer.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class Profile {
+import java.io.Serializable;
+
+@Data
+@ToString
+public class Profile implements Serializable {
     private String name;
     private String phoneNumber;
     private String email;

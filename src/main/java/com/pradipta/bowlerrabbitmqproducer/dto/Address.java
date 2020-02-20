@@ -1,15 +1,12 @@
 package com.pradipta.bowlerrabbitmqproducer.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class Address {
+import java.io.Serializable;
+
+@Data
+@ToString
+public class Address implements Serializable {
     private String addressType;
     private String line1;
     private String line2;
