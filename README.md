@@ -156,15 +156,19 @@ Service 2:
    -p "15672:15672" \
    rabbitmq:3-management
 ```
-`docker run --name=mysqlindocker -d mysql/mysql-server`
+
+`docker network create bowler-mysql-network`
+
+`docker container run --name mysqlindocker --network bowler-mysql-network -e MYSQL_ROOT_PASSWORD=ueducation -e MYSQL_DATABASE=bowler -d mysql:8`
 
 `docker logs mysqlindocker` and get the generated password from there
 
+To enter MySQL CLI:
+
 `docker exec -it mysqlindocker mysql -uroot -p`
-Enter the password that you got in the logs.
 
 `mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'ueducation';`
 
-`docker run -p 8080:8080 bowler`
+`docker container run --network bowler-mysql-network --name bowlerindockercontainer -p 8080:10222 -d bowlerindocker`
 
-`docker run -p 8081:8080 bowler`
+`docker container run --network bowler-mysql-network --name bowlerindockercontainer -p 8081:10222 -d bowlerindocker`
