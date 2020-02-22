@@ -156,6 +156,14 @@ Service 2:
    -p "15672:15672" \
    rabbitmq:3-management
 ```
+`docker run --name=mysqlindocker -d mysql/mysql-server`
+
+`docker logs mysqlindocker` and get the generated password from there
+
+`docker exec -it mysqlindocker mysql -uroot -p`
+Enter the password that you got in the logs.
+
+`mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'ueducation';`
 
 `docker run -p 8080:8080 bowler`
 
