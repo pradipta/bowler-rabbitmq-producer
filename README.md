@@ -168,13 +168,13 @@ Service 2:
 To enter MySQL CLI:
 `docker exec -it mysqlindocker mysql -uroot -p`
 
+`docker create --network bowler-mysql-network --name bowlerindockercontainer -p 8080:10222 bowlerindocker`
+`docker create --network bowler-mysql-network --name bowlerindockercontainer2 -p 8081:10222 bowlerindocker`
+
+`docker network connect java-rabbitmq bowlerindockercontainer`
 `docker network connect java-rabbitmq bowlerindockercontainer`
 
-`docker create --network bowler-mysql-network --name bowlerindockercontainer -p 8080:10222 bowlerindocker`
-
 `docker start bowlerindockercontainer`
-
-`docker create --network bowler-mysql-network --name bowlerindockercontainer2 -p 8081:10222 bowlerindocker`
 
 `docker start bowlerindockercontainer2`
 
