@@ -142,6 +142,7 @@ Service 2:
 2. I am assuming you will figure out how to add queue to a listener using GOOGLE SEARCH.
 3. Just print the message to the log. Together with the current queue name
 
+`mvn clean install`
 
 `docker build -f Dockerfile -t bowlerindocker .`
 
@@ -149,6 +150,7 @@ Service 2:
 
 ```docker run -d \
    --name="rabbitmq" \
+   --net=java-rabbitmq \
    -p "4369:4369" \
    -p "5671:5671" \
    -p "5672:5672" \
@@ -161,14 +163,18 @@ Service 2:
 
 `docker container run --name mysqlindocker --network bowler-mysql-network -e MYSQL_ROOT_PASSWORD=ueducation -e MYSQL_DATABASE=bowler -d mysql:8`
 
-`docker logs mysqlindocker` and get the generated password from there
+`docker logs mysqlindocker`
 
 To enter MySQL CLI:
-
 `docker exec -it mysqlindocker mysql -uroot -p`
 
-`mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'ueducation';`
+`docker network connect java-rabbitmq bowlerindockercontainer`
 
-`docker container run --network bowler-mysql-network --name bowlerindockercontainer -p 8080:10222 -d bowlerindocker`
+`docker create --network bowler-mysql-network --name bowlerindockercontainer -p 8080:10222 bowlerindocker`
 
-`docker container run --network bowler-mysql-network --name bowlerindockercontainer -p 8081:10222 -d bowlerindocker`
+`docker start bowlerindockercontainer`
+
+`docker create --network bowler-mysql-network --name bowlerindockercontainer2 -p 8081:10222 bowlerindocker`
+
+`docker start bowlerindockercontainer2`
+
