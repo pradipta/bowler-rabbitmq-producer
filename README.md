@@ -168,8 +168,10 @@ Service 2:
 To enter MySQL CLI:
 `docker exec -it mysqlindocker mysql -uroot -p`
 
-`docker create --network bowler-mysql-network --name bowlerindockercontainer -p 8080:10222 bowlerindocker`
-`docker create --network bowler-mysql-network --name bowlerindockercontainer2 -p 8081:10222 bowlerindocker`
+Publishing to a localhost port is optional as we will use nginx as a load balancer anyways.
+
+`docker create --network bowler-mysql-network --name bowlerindockercontainer -p 7000:10222 bowlerindocker`
+`docker create --network bowler-mysql-network --name bowlerindockercontainer2 -p 7001:10222 bowlerindocker`
 
 `docker network connect java-rabbitmq bowlerindockercontainer`
 `docker network connect java-rabbitmq bowlerindockercontainer`
@@ -177,4 +179,13 @@ To enter MySQL CLI:
 `docker start bowlerindockercontainer`
 
 `docker start bowlerindockercontainer2`
+
+`cd nginx`
+`docker build -f Dockerfile -t nginxloadbalancer .`
+`docker create --network bowler-mysql-network --name nginxloadbalancercontainer -p 5000:80 nginxloadbalancer`
+`docker start nginxloadbalancercontainer`
+
+You can now make curl requests to  localhost:5000
+
+
 
